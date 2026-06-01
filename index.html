@@ -3,33 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Prueba Three.js</title>
-
+<title>Test</title>
 <style>
-body{
-margin:0;
-overflow:hidden;
-background:black;
-}
-#msg{
-position:fixed;
-top:10px;
-left:10px;
-background:white;
-padding:10px;
-z-index:1000;
-}
+body{margin:0;overflow:hidden;}
+canvas{display:block;}
 </style>
 </head>
 <body>
 
-<div id="msg">Iniciando...</div>
+<script type="module">
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js"></script>
-
-<script>
-
-document.getElementById("msg").innerHTML="Three.js cargado";
+import * as THREE from 'https://unpkg.com/three@0.180.0/build/three.module.js';
 
 const scene = new THREE.Scene();
 
@@ -40,8 +24,7 @@ window.innerWidth/window.innerHeight,
 1000
 );
 
-const renderer = new THREE.WebGLRenderer();
-
+const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
@@ -55,14 +38,12 @@ scene.add(cube);
 camera.position.z = 3;
 
 function animate(){
-
 requestAnimationFrame(animate);
 
 cube.rotation.x += 0.01;
 cube.rotation.y += 0.01;
 
 renderer.render(scene,camera);
-
 }
 
 animate();
